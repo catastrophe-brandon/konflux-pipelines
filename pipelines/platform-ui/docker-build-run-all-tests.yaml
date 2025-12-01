@@ -120,9 +120,6 @@ spec:
   - description: Script run while executing the run-e2e-tests custom task
     name: e2e-tests-script
     type: string
-  - description: Script run by the run-application sidecar
-    name: run-app-script
-    type: string
   - description: Script to generate proxy routes configuration for e2e tests
     name: proxy-routes-script
     type: string
@@ -710,8 +707,6 @@ spec:
         value: $(tasks.build-image-index.results.IMAGE_URL)
       - name: e2e-tests-script
         value: $(params.e2e-tests-script)
-      - name: run-app-script
-        value: $(params.run-app-script)
       - name: PROXY_ROUTES_SCRIPT
         value: $(params.proxy-routes-script)
       - name: APP_PORT
@@ -738,9 +733,6 @@ spec:
           type: string
         - description: The script to execute the e2e tests
           name: e2e-tests-script
-          type: string
-        - description: The script to run the application
-          name: run-app-script
           type: string
         - description: Proxy routes script
           name: PROXY_ROUTES_SCRIPT
@@ -980,8 +972,6 @@ spec:
         - name: run-application
           image: $(params.APPLICATION_IMAGE)
           command: ["/bin/sh", "-c"]
-          args:
-            - $(params.run-app-script)
           securityContext:
             privileged: false
           volumeMounts:
