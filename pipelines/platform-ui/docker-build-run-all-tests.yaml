@@ -1045,6 +1045,11 @@ spec:
                 secretKeyRef:
                   name: $(params.CREDENTIALS_SECRET)
                   key: e2e-hcc-env-url
+            - name: CHROMATIC_PROJECT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: $(params.CREDENTIALS_SECRET)
+                  key: chromatic-project-token
           name: e2e-tests
           workingDir: /var/workdir
           computeResources:
